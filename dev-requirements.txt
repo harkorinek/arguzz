@@ -13,3 +13,4 @@ pytest==8.3.4
 -e ./projects/jolt-fuzzer
 -e ./projects/openvm-fuzzer
 -e ./projects/pico-fuzzer
+-e ./projects/airbender-fuzzer

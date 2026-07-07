@@ -3,12 +3,12 @@
 import logging
 from random import Random
 
-from zkvm_fuzzer_utils.cli import FuzzerClient
-from zkvm_fuzzer_utils.fuzzer import generate_metamorphic_bundle_from_config
-
 from airbender_fuzzer.fuzzer import CircuitFuzzer, create_circuit_config
 from airbender_fuzzer.settings import AIRBENDER_AVAILABLE_COMMITS_OR_BRANCHES
 from airbender_fuzzer.zkvm_project import CircuitProjectGenerator
+from airbender_fuzzer.zkvm_repository.install import install_airbender
+from zkvm_fuzzer_utils.cli import FuzzerClient
+from zkvm_fuzzer_utils.fuzzer import generate_metamorphic_bundle_from_config
 
 logger = logging.getLogger("fuzzer")
 
@@ -54,7 +54,12 @@ class AirbenderFuzzerClient(FuzzerClient):
         logger.info(f"=== End {self.logger_prefix} Fuzzing Campaign ===")
 
     def install(self):
-        raise NotImplementedError()
+        assert self.zkvm_dir, "no zkvm library"
+        install_airbender(
+            self.zkvm_dir,
+            self.commit_or_branch,
+            enable_zkvm_modification=(not self.is_zkvm_modification),
+        )
 
     def check(self):
         raise NotImplementedError()

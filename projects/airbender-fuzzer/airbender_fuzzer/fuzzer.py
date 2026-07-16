@@ -152,12 +152,12 @@ class CircuitFuzzer(CircuitFuzzerBase[InstrKind, InjectionKind]):
     def is_ignored_execution_error(self, exec_status: ExecStatus) -> bool:
         return False
 
-    def create_execution_arguments(
-        self, injection_arguments: InjectionArguments | None = None
-    ) -> list[str]:
-        flags = super().create_execution_arguments(injection_arguments)
-        return [
-            "--no-witness-gen"  # only execution for now
-        ] + flags
+    # def create_execution_arguments(
+    #     self, injection_arguments: InjectionArguments | None = None
+    # ) -> list[str]:
+    #     flags = super().create_execution_arguments(injection_arguments)
+    #     return [
+    #         "--no-witness-gen"  # only execution for now
+    #     ] + flags
 
 # ---------------------------------------------------------------------------- #

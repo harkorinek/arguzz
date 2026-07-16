@@ -1,7 +1,7 @@
-FROM debian:bookworm as airbender
+FROM debian:bookworm AS airbender
 
 # run docker image in non interactive mode
-ENV DEBIAN_FRONTEND noninteractive
+ENV DEBIAN_FRONTEND=noninteractive
 
 # start from root directory
 WORKDIR /root/
